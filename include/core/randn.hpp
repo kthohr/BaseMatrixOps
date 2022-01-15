@@ -31,7 +31,7 @@
 #ifdef BMO_ENABLE_EIGEN_WRAPPERS
     inline
     Vec_t
-    eigen_randn_vec(size_t nr)
+    bmo_eigen_randn_vec(size_t nr)
     {
         static std::mt19937 gen{ std::random_device{}() };
         static std::normal_distribution<> dist;
@@ -41,7 +41,7 @@
 
     inline
     Mat_t
-    eigen_randn_mat(size_t nr, size_t nc)
+    bmo_eigen_randn_mat(size_t nr, size_t nc)
     {
         static std::mt19937 gen{ std::random_device{}() };
         static std::normal_distribution<> dist;
@@ -49,9 +49,9 @@
         return Eigen::MatrixXd{ nr, nc }.unaryExpr([&](double x) { return dist(gen); });
     }
 
-    #define BMO_MATOPS_RANDN_VEC(j) optim::eigen_randn_vec(j)
-    #define BMO_MATOPS_RANDN_ROWVEC(j) (optim::eigen_randn_vec(j)).transpose()
-    #define BMO_MATOPS_RANDN_MAT(j,k) optim::eigen_randn_mat(j,k)
+    #define BMO_MATOPS_RANDN_VEC(j) bmo_eigen_randn_vec(j)
+    #define BMO_MATOPS_RANDN_ROWVEC(j) (bmo_eigen_randn_vec(j)).transpose()
+    #define BMO_MATOPS_RANDN_MAT(j,k) bmo_eigen_randn_mat(j,k)
 #endif
 
 //
