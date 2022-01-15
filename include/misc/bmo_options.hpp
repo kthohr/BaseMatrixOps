@@ -20,12 +20,11 @@
 #ifdef BMO_ENABLE_EIGEN_WRAPPERS
 
     #if EIGEN_VERSION_AT_LEAST(3,4,50)
-            #define BMO_EIGEN_INDEX_ALL Eigen::indexing::all
-        #elif EIGEN_VERSION_AT_LEAST(3,4,0)
-            #define BMO_EIGEN_INDEX_ALL Eigen::all
-        #else
-            #error Eigen must be version 3.4.0 or above
-        #endif
+        #define BMO_EIGEN_INDEX_ALL Eigen::indexing::all
+    #elif EIGEN_VERSION_AT_LEAST(3,4,0)
+        #define BMO_EIGEN_INDEX_ALL Eigen::all
+    #else
+        #error Eigen must be version 3.4.0 or above
     #endif
 
 #endif
