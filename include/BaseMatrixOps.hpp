@@ -18,6 +18,9 @@
   ##
   ################################################################################*/
 
+#ifndef BMO_INCLUDES
+#define BMO_INCLUDES
+
 //
 
 #include "misc/bmo_options.hpp"
@@ -69,5 +72,7 @@
 #include "extra/index_min.hpp"
 #include "extra/reset_negative_values.hpp"
 #include "extra/unit_vec.hpp"
+
+#endif
 
 #endif

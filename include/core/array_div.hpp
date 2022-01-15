@@ -18,7 +18,7 @@
   ##
   ################################################################################*/
 
-#ifndef BMO_MATOPS_ARRAY_DIV
+#ifndef BMO_MATOPS_ARRAY_DIV_SCALAR
 
 //
 

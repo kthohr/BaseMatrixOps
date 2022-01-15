@@ -18,6 +18,9 @@
   ##
   ################################################################################*/
 
+#ifndef BMO_EXTRA_INDEX_MIN
+#define BMO_EXTRA_INDEX_MIN
+
 inline
 size_t
 index_min(const Vec_t& x)
@@ -38,3 +41,5 @@ index_min(const Vec_t& x)
 
     return min_ind;
 }
+
+#endif

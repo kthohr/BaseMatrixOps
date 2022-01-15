@@ -22,7 +22,8 @@
  * unit vector (a zero vector with j-th element equal to one)
  */
 
-#ifndef BMO_MATOPS_UNIT_VEC
+#ifndef BMO_EXTRA_UNIT_VEC
+#define BMO_EXTRA_UNIT_VEC
 
 inline
 Vec_t

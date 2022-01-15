@@ -22,7 +22,7 @@
  * zeros
  */
 
-#ifndef BMO_MATOPS_ZEROS
+#ifndef BMO_MATOPS_ZEROS_VEC
 
 //
 

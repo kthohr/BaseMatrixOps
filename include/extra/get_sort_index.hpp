@@ -18,6 +18,9 @@
   ##
   ################################################################################*/
 
+#ifndef BMO_EXTRA_GET_SORT_INDEX
+#define BMO_EXTRA_GET_SORT_INDEX
+
 inline
 VecInt_t
 get_sort_index(const Vec_t& vec_in)
@@ -38,3 +41,5 @@ get_sort_index(const Vec_t& vec_in)
 
     return out_vec;
 }
+
+#endif

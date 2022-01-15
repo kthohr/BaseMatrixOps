@@ -18,6 +18,9 @@
   ##
   ################################################################################*/
 
+#ifndef BMO_EXTRA_RESET_NEG_VALUES
+#define BMO_EXTRA_RESET_NEG_VALUES
+
 inline
 void
 reset_negative_values(const Vec_t& vec_in, Vec_t& vec_out)
@@ -46,3 +49,5 @@ reset_negative_rows(const Vec_t& vec_in, Mat_t& mat_out)
         }
     }
 }
+
+#endif

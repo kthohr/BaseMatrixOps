@@ -22,7 +22,7 @@
  * Lp-Norm
  */
 
-#ifndef BMO_MATOPS_NORM
+#ifndef BMO_MATOPS_L1NORM
 
 //
 
