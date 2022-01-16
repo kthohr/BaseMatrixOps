@@ -22,7 +22,7 @@
 #define BMO_EXTRA_GET_SORT_INDEX
 
 inline
-VecInt_t
+ColVecInt_t
 get_sort_index(const ColVec_t& vec_in)
 {
     const size_t n = BMO_MATOPS_SIZE(vec_in);
@@ -33,7 +33,7 @@ get_sort_index(const ColVec_t& vec_in)
     sort(idx.begin(), idx.end(),
          [&vec_in](size_t i1, size_t i2) {return vec_in(i1) < vec_in(i2);});
 
-    VecInt_t out_vec(n);
+    ColVecInt_t out_vec(n);
 
     for (size_t i = 0; i < n; ++i) {
         out_vec(i) = idx[i];

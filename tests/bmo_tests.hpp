@@ -9,7 +9,7 @@
     using Mat_t = arma::mat;
     using ColVec_t = arma::vec;
     using RowVec_t = arma::rowvec;
-    using VecInt_t = arma::uvec;
+    using ColVecInt_t = arma::uvec;
 #endif
 
 //
@@ -25,7 +25,7 @@
     using Mat_t = Eigen::MatrixXd;
     using ColVec_t = Eigen::VectorXd;
     using RowVec_t = Eigen::Matrix<double,1,Eigen::Dynamic>;
-    using VecInt_t = Eigen::VectorXi;
+    using ColVecInt_t = Eigen::VectorXi;
 #endif
 
 #include "BaseMatrixOps.hpp"
