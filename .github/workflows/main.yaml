@@ -83,34 +83,44 @@ jobs:
           sudo apt-get install ${{ matrix.config.cc }} ${{ matrix.config.cxx }} ${{ matrix.config.fc }} libblas-dev liblapack-dev
           ${{ matrix.config.cc }} --version
           
-      - name: Tests
+      - name: Install linear algebra libraries
         shell: bash
         run: |
-          export CC=${{ matrix.config.cc }}
-          export CXX=${{ matrix.config.cxx }}
-          #
           WDIR=${PWD}
           #
           if [[ "${{ matrix.config.linalg }}" == "arma" ]]; then 
-            export BMO_ENABLE_ARMA_WRAPPERS="y"
             mkdir ${WDIR}/arma_tmp
             git clone --single-branch https://gitlab.com/conradsnicta/armadillo-code.git ${WDIR}/arma_tmp > /dev/null 2>&1
             mv ${WDIR}/arma_tmp/include/* ${WDIR}/include
             rm -rf ${WDIR}/arma_tmp
-            export ARMA_INCLUDE_PATH="${WDIR}/include"
           elif [[ "${{ matrix.config.linalg }}" == "eigen" ]]; then 
-            export BMO_ENABLE_EIGEN_WRAPPERS="y"
             mkdir ${WDIR}/eigen_tmp
             git clone --single-branch https://gitlab.com/libeigen/eigen.git ${WDIR}/eigen_tmp > /dev/null 2>&1
             mv ${WDIR}/eigen_tmp/* ${WDIR}/include
             rm -rf ${WDIR}/eigen_tmp
-            export EIGEN_INCLUDE_PATH="${WDIR}/include"
+          else
+            echo -e "  \x1B[31m- error: unrecognized linear algebra library.\033[0m" >&2 ;
+            echo ""
+            exit 1
+          fi
+
+      - name: Tests
+        shell: bash
+        working-directory: tests
+        run: |
+          WDIR=${PWD}
+          export CXX=${{ matrix.config.cxx }}
+          if [[ "${{ matrix.config.linalg }}" == "arma" ]]; then 
+            export BMO_ENABLE_ARMA_WRAPPERS="y"
+            export ARMA_INCLUDE_PATH="${WDIR}/../include"
+          elif [[ "${{ matrix.config.linalg }}" == "eigen" ]]; then 
+            export BMO_ENABLE_EIGEN_WRAPPERS="y"
+            export EIGEN_INCLUDE_PATH="${WDIR}/../include"
           else
             echo -e "  \x1B[31m- error: unrecognized linear algebra library.\033[0m" >&2 ;
             echo ""
             exit 1
           fi
           #
-          cd tests
           make
           ./run_tests
