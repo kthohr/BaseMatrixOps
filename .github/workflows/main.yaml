@@ -122,5 +122,6 @@ jobs:
             exit 1
           fi
           #
+          ls -al
           make
           ./run_tests
