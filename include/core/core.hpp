@@ -18,25 +18,47 @@
   ##
   ################################################################################*/
 
-/*
- * Vector/matrix of ones
- */
-
-#ifndef BMO_MATOPS_ONE_VEC
+#ifndef BMO_CORE_INCLUDES
+#define BMO_CORE_INCLUDES
 
 //
 
-#ifdef BMO_ENABLE_ARMA_WRAPPERS
-    #define BMO_MATOPS_ONE_VEC(n) arma::ones(n,1)
-    #define BMO_MATOPS_ONE_MAT(n,k) arma::ones(n,k)
-#endif
-
-#ifdef BMO_ENABLE_EIGEN_WRAPPERS
-    // #define BMO_MATOPS_ONE_VEC(n) Eigen::ArrayXd::Ones(n)
-    #define BMO_MATOPS_ONE_VEC(n) Eigen::VectorXd::Ones(n)
-    // #define BMO_MATOPS_ONE_MAT(n,k) Eigen::ArrayXXd::Ones(n,k)
-    #define BMO_MATOPS_ONE_MAT(n,k) Eigen::MatrixXd::Ones(n,k)
-#endif
+#include "abs.hpp"
+#include "abs_max.hpp"
+#include "accu.hpp"
+#include "access.hpp"
+#include "array_add.hpp"
+#include "array_div.hpp"
+#include "as_scalar.hpp"
+#include "cos.hpp"
+#include "cout.hpp"
+#include "diagmat.hpp"
+#include "diagvec.hpp"
+#include "dot.hpp"
+#include "endl.hpp"
+#include "eval.hpp"
+#include "exp.hpp"
+#include "eye.hpp"
+#include "hadamard.hpp"
+#include "is_finite.hpp"
+#include "inv.hpp"
+#include "log.hpp"
+#include "max.hpp"
+#include "min.hpp"
+#include "ncol.hpp"
+#include "norm.hpp"
+#include "ones.hpp"
+#include "pow.hpp"
+#include "randi.hpp"
+#include "randn.hpp"
+#include "randu.hpp"
+#include "set_size.hpp"
+#include "size.hpp"
+#include "solve.hpp"
+#include "sqrt.hpp"
+#include "sum.hpp"
+#include "transpose.hpp"
+#include "zeros.hpp"
 
 //
 

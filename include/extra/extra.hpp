@@ -18,25 +18,15 @@
   ##
   ################################################################################*/
 
-/*
- * Vector/matrix of ones
- */
-
-#ifndef BMO_MATOPS_ONE_VEC
+#ifndef BMO_EXTRA_INCLUDES
+#define BMO_EXTRA_INCLUDES
 
 //
 
-#ifdef BMO_ENABLE_ARMA_WRAPPERS
-    #define BMO_MATOPS_ONE_VEC(n) arma::ones(n,1)
-    #define BMO_MATOPS_ONE_MAT(n,k) arma::ones(n,k)
-#endif
-
-#ifdef BMO_ENABLE_EIGEN_WRAPPERS
-    // #define BMO_MATOPS_ONE_VEC(n) Eigen::ArrayXd::Ones(n)
-    #define BMO_MATOPS_ONE_VEC(n) Eigen::VectorXd::Ones(n)
-    // #define BMO_MATOPS_ONE_MAT(n,k) Eigen::ArrayXXd::Ones(n,k)
-    #define BMO_MATOPS_ONE_MAT(n,k) Eigen::MatrixXd::Ones(n,k)
-#endif
+#include "get_sort_index.hpp"
+#include "index_min.hpp"
+#include "reset_negative_values.hpp"
+#include "unit_vec.hpp"
 
 //
 

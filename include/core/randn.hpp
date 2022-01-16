@@ -36,7 +36,7 @@
         static std::mt19937 gen{ std::random_device{}() };
         static std::normal_distribution<> dist;
 
-        return Eigen::VectorXd{ nr }.unaryExpr([&](double x) { return dist(gen); });
+        return Eigen::VectorXd{ nr }.unaryExpr([&](double x) { (void)(x); return dist(gen); });
     }
 
     inline
@@ -46,7 +46,7 @@
         static std::mt19937 gen{ std::random_device{}() };
         static std::normal_distribution<> dist;
 
-        return Eigen::MatrixXd{ nr, nc }.unaryExpr([&](double x) { return dist(gen); });
+        return Eigen::MatrixXd{ nr, nc }.unaryExpr([&](double x) { (void)(x); return dist(gen); });
     }
 
     #define BMO_MATOPS_RANDN_VEC(j) bmo_eigen_randn_vec(j)
