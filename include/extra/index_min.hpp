@@ -23,7 +23,7 @@
 
 inline
 size_t
-index_min(const Vec_t& x)
+index_min(const ColVec_t& x)
 {
     size_t x_n = BMO_MATOPS_SIZE(x);
     

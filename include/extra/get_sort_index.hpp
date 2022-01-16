@@ -23,7 +23,7 @@
 
 inline
 VecInt_t
-get_sort_index(const Vec_t& vec_in)
+get_sort_index(const ColVec_t& vec_in)
 {
     const size_t n = BMO_MATOPS_SIZE(vec_in);
 

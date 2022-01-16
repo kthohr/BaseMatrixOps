@@ -23,7 +23,7 @@
 
 inline
 void
-reset_negative_values(const Vec_t& vec_in, Vec_t& vec_out)
+reset_negative_values(const ColVec_t& vec_in, ColVec_t& vec_out)
 {
     const size_t n = BMO_MATOPS_SIZE(vec_in);
 
@@ -36,7 +36,7 @@ reset_negative_values(const Vec_t& vec_in, Vec_t& vec_out)
 
 inline
 void
-reset_negative_rows(const Vec_t& vec_in, Mat_t& mat_out)
+reset_negative_rows(const ColVec_t& vec_in, Mat_t& mat_out)
 {
     const size_t nr = BMO_MATOPS_SIZE(vec_in);
     const size_t nc = BMO_MATOPS_NCOL(mat_out);

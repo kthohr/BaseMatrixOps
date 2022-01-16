@@ -7,7 +7,7 @@
     #include "armadillo"
 
     using Mat_t = arma::mat;
-    using Vec_t = arma::vec;
+    using ColVec_t = arma::vec;
     using RowVec_t = arma::rowvec;
     using VecInt_t = arma::uvec;
 #endif
@@ -23,7 +23,7 @@
     using EigenMat = Eigen::Matrix<eT,iTr,iTc>;
 
     using Mat_t = Eigen::MatrixXd;
-    using Vec_t = Eigen::VectorXd;
+    using ColVec_t = Eigen::VectorXd;
     using RowVec_t = Eigen::Matrix<double,1,Eigen::Dynamic>;
     using VecInt_t = Eigen::VectorXi;
 #endif

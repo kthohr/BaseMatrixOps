@@ -30,7 +30,7 @@
 
 #ifdef BMO_ENABLE_EIGEN_WRAPPERS
     inline
-    Vec_t
+    ColVec_t
     bmo_eigen_randn_vec(size_t nr)
     {
         static std::mt19937 gen{ std::random_device{}() };

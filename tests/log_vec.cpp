@@ -24,7 +24,7 @@ int main()
 {
     const int n_vals = 4;
 
-    Vec_t test_vec = BMO_MATOPS_ONE_VEC(n_vals);
+    ColVec_t test_vec = BMO_MATOPS_ONE_VEC(n_vals);
     
     BMO_MATOPS_COUT << test_vec << BMO_MATOPS_ENDL;
 
