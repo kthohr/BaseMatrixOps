@@ -104,12 +104,12 @@ rnorm()
 
 //
 
-template<typename T1, typename T2>
+template<typename T1, typename T2, typename vT = ColVec_t>
 inline
-ColVec_t
+vT
 rnorm_vec(size_t n_vals, const T1 mu_par, const T2 sigma_par, rand_engine_t& engine)
 {
-    ColVec_t ret_vec(n_vals);
+    vT ret_vec(n_vals);
 
     for (size_t i=0; i < n_vals; ++i) {
         ret_vec(i) = rnorm(mu_par, sigma_par, engine);
@@ -118,17 +118,17 @@ rnorm_vec(size_t n_vals, const T1 mu_par, const T2 sigma_par, rand_engine_t& eng
     return ret_vec;
 }
 
-template<typename T>
+template<typename T, typename vT = ColVec_t>
 inline
-ColVec_t
+vT
 rsnorm_vec(size_t n_vals, rand_engine_t& engine)
 {
     return rnorm_vec(n_vals, T(0), T(1), engine);
 }
 
-template<typename T>
+template<typename T, typename vT = ColVec_t>
 inline
-ColVec_t
+vT
 rsnorm_vec(size_t n_vals)
 {
     rand_engine_t engine(std::random_device{}());

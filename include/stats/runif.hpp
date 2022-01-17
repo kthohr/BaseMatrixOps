@@ -105,12 +105,12 @@ runif()
 
 //
 
-template<typename T1, typename T2>
+template<typename T1, typename T2, typename vT = ColVec_t>
 inline
-ColVec_t
+vT
 runif_vec(size_t n_vals, const T1 a_par, const T2 b_par, rand_engine_t& engine)
 {
-    ColVec_t ret_vec(n_vals);
+    vT ret_vec(n_vals);
 
     for (size_t i=0; i < n_vals; ++i) {
         ret_vec(i) = runif(a_par, b_par, engine);
@@ -119,17 +119,17 @@ runif_vec(size_t n_vals, const T1 a_par, const T2 b_par, rand_engine_t& engine)
     return ret_vec;
 }
 
-template<typename T>
+template<typename T, typename vT = ColVec_t>
 inline
-ColVec_t
+vT
 rsunif_vec(size_t n_vals, rand_engine_t& engine)
 {
     return runif_vec(n_vals, T(0), T(1), engine);
 }
 
-template<typename T>
+template<typename T, typename vT = ColVec_t>
 inline
-ColVec_t
+vT
 rsunif_vec(size_t n_vals)
 {
     rand_engine_t engine(std::random_device{}());

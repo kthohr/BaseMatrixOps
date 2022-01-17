@@ -69,12 +69,12 @@ rind(const T1 a_par, const T2 b_par, const size_t seed_val)
 
 //
 
-template<typename T1, typename T2>
+template<typename T1, typename T2, typename vT = ColVec_t>
 inline
-ColVec_t
+vT
 rind_vec(size_t n_vals, const T1 a_par, const T2 b_par, rand_engine_t& engine)
 {
-    ColVec_t ret_vec(n_vals);
+    vT ret_vec(n_vals);
 
     for (size_t i=0; i < n_vals; ++i) {
         ret_vec(i) = rind(a_par, b_par, engine);
