@@ -90,6 +90,14 @@ runif(const T1 a_par, const T2 b_par, const size_t seed_val)
 template<typename T>
 inline
 T
+runif(rand_engine_t& engine)
+{
+    return runif(T(0),T(1),engine);
+}
+
+template<typename T>
+inline
+T
 runif()
 {
     return runif(T(0),T(1));

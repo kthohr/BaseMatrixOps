@@ -89,6 +89,14 @@ rnorm(const T1 mu_par, const T2 sigma_par, const size_t seed_val)
 template<typename T>
 inline
 T
+rnorm(rand_engine_t& engine)
+{
+    return rnorm(T(0),T(1),engine);
+}
+
+template<typename T>
+inline
+T
 rnorm()
 {
     return rnorm(T(0),T(1));
