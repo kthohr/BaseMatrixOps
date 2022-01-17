@@ -1,8 +1,8 @@
 /*################################################################################
   ##
-  ##   Copyright (C) 2016-2022 Keith O'Hara
+  ##   Copyright (C) 2011-2022 Keith O'Hara
   ##
-  ##   This file is part of the BaseMatrixOps C++ library.
+  ##   This file is part of the StatsLib C++ library.
   ##
   ##   Licensed under the Apache License, Version 2.0 (the "License");
   ##   you may not use this file except in compliance with the License.
@@ -18,26 +18,34 @@
   ##
   ################################################################################*/
 
-#ifndef BMO_MATOPS_COLS
+#ifndef BMO_STATS_INCLUDES
+#define BMO_STATS_INCLUDES
+
+#ifndef BMO_RAND_ENGINE_TYPE
+    #define BMO_RAND_ENGINE_TYPE std::mt19937_64;
+#endif
+
+namespace bmo_stats
+{
+
+using rand_engine_t = BMO_RAND_ENGINE_TYPE;
+
+template<typename T>
+using return_t = typename std::conditional<std::is_integral<T>::value,double,T>::type;
+
+template<typename ...T>
+using common_t = typename std::common_type<T...>::type;
+
+template<typename ...T>
+using common_return_t = return_t<common_t<T...>>;
 
 //
 
-#ifdef BMO_ENABLE_ARMA_WRAPPERS
-    #define BMO_MATOPS_COLS(x, v) (x).cols(v) // v is a vector
-    #define BMO_MATOPS_ROWS(x, v) (x).rows(v) // v is a vector
-    // access columns j through k
-    #define BMO_MATOPS_MIDDLE_COLS(x, j, k) (x).cols(j,k)
-    #define BMO_MATOPS_MIDDLE_ROWS(x, j, k) (x).rows(j,k)
-#endif
+#include "runif.hpp"
+#include "rnorm.hpp"
 
-#ifdef BMO_ENABLE_EIGEN_WRAPPERS
-    #define BMO_MATOPS_COLS(x, v) (x)(BMO_EIGEN_INDEX_ALL,v) // v is a vector
-    #define BMO_MATOPS_ROWS(x, v) (x)(v,BMO_EIGEN_INDEX_ALL) // v is a vector
-    // access columns j through k
-    #define BMO_MATOPS_MIDDLE_COLS(x, j, k) (x).middleCols(j,k-j+1)
-    #define BMO_MATOPS_MIDDLE_ROWS(x, j, k) (x).middleRows(j,k-j+1)
-#endif
+#include "rind.hpp"
 
-//
+}
 
 #endif

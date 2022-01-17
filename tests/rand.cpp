@@ -2,7 +2,7 @@
   ##
   ##   Copyright (C) 2016-2022 Keith O'Hara
   ##
-  ##   This file is part of the BaseMatrixOps C++ library.
+  ##   This file is part of the GCE-Math C++ library.
   ##
   ##   Licensed under the Apache License, Version 2.0 (the "License");
   ##   you may not use this file except in compliance with the License.
@@ -18,26 +18,29 @@
   ##
   ################################################################################*/
 
-#ifndef BMO_MATOPS_COLS
+#define BMO_ENABLE_STATS_FEATURES
 
-//
+#include "bmo_tests.hpp"
 
-#ifdef BMO_ENABLE_ARMA_WRAPPERS
-    #define BMO_MATOPS_COLS(x, v) (x).cols(v) // v is a vector
-    #define BMO_MATOPS_ROWS(x, v) (x).rows(v) // v is a vector
-    // access columns j through k
-    #define BMO_MATOPS_MIDDLE_COLS(x, j, k) (x).cols(j,k)
-    #define BMO_MATOPS_MIDDLE_ROWS(x, j, k) (x).rows(j,k)
-#endif
+int main()
+{
+    const int n_vals = 4;
 
-#ifdef BMO_ENABLE_EIGEN_WRAPPERS
-    #define BMO_MATOPS_COLS(x, v) (x)(BMO_EIGEN_INDEX_ALL,v) // v is a vector
-    #define BMO_MATOPS_ROWS(x, v) (x)(v,BMO_EIGEN_INDEX_ALL) // v is a vector
-    // access columns j through k
-    #define BMO_MATOPS_MIDDLE_COLS(x, j, k) (x).middleCols(j,k-j+1)
-    #define BMO_MATOPS_MIDDLE_ROWS(x, j, k) (x).middleRows(j,k-j+1)
-#endif
+    bmo_stats::rand_engine_t engine(1);
 
-//
+    //
 
-#endif
+    ColVec_t runif_test_vec = bmo_stats::rsunif_vec<double>(n_vals, engine);
+    
+    BMO_MATOPS_COUT << runif_test_vec << BMO_MATOPS_ENDL;
+
+    ColVec_t rnorm_test_vec = bmo_stats::rsnorm_vec<double>(n_vals, engine);
+    
+    BMO_MATOPS_COUT << rnorm_test_vec << BMO_MATOPS_ENDL;
+
+    ColVec_t rind_test_vec = bmo_stats::rind_vec(n_vals, 0, 3, engine);
+    
+    BMO_MATOPS_COUT << rind_test_vec << BMO_MATOPS_ENDL;
+
+    return 0;
+}

@@ -47,3 +47,6 @@ BMO_MAKE_CALL= $(CXX) $(CXX_STD) $(OPT_FLAGS) -I$(HEADER_DIR) $@.cpp -o $@.test 
 
 log_vec:
 	$(BMO_MAKE_CALL)
+
+rand:
+	$(BMO_MAKE_CALL)

@@ -23,14 +23,12 @@
 //
 
 #ifdef BMO_ENABLE_ARMA_WRAPPERS
-    // acces columns j through k
     #define BMO_MATOPS_RANDI_VEC(j, a, b)    arma::randi<arma::vec>(j, arma::distr_param(a, b))
     #define BMO_MATOPS_RANDI_ROWVEC(j, a, b) arma::randi<arma::rowvec>(j, arma::distr_param(a, b))
     #define BMO_MATOPS_RANDI_MAT(j, k)       arma::randi<arma::mat>(j, k, arma::distr_param(a, b))
 #endif
 
 #ifdef BMO_ENABLE_EIGEN_WRAPPERS
-    // acces columns j through k
     #define BMO_MATOPS_RANDI_VEC(j, a, b)    (a + (b-a) * (Eigen::VectorXd::Random(j).array() * 0.5 + 0.5)).matrix().cast<uint_t>()
     #define BMO_MATOPS_RANDI_ROWVEC(j, a, b) (a + (b-a) * (Eigen::VectorXd::Random(j).array() * 0.5 + 0.5)).matrix().transpose().cast<uint_t>()
     #define BMO_MATOPS_RANDI_MAT(j, k, a, b) (a + (b-a) * (Eigen::VectorXd::Random(j,k).array() * 0.5 + 0.5)).matrix().cast<uint_t>()

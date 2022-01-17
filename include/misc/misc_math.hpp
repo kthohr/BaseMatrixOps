@@ -18,26 +18,16 @@
   ##
   ################################################################################*/
 
-#ifndef BMO_MATOPS_COLS
+#ifndef BMO_MISC_MATH
+#define BMO_MISC_MATH
 
-//
-
-#ifdef BMO_ENABLE_ARMA_WRAPPERS
-    #define BMO_MATOPS_COLS(x, v) (x).cols(v) // v is a vector
-    #define BMO_MATOPS_ROWS(x, v) (x).rows(v) // v is a vector
-    // access columns j through k
-    #define BMO_MATOPS_MIDDLE_COLS(x, j, k) (x).cols(j,k)
-    #define BMO_MATOPS_MIDDLE_ROWS(x, j, k) (x).rows(j,k)
-#endif
-
-#ifdef BMO_ENABLE_EIGEN_WRAPPERS
-    #define BMO_MATOPS_COLS(x, v) (x)(BMO_EIGEN_INDEX_ALL,v) // v is a vector
-    #define BMO_MATOPS_ROWS(x, v) (x)(v,BMO_EIGEN_INDEX_ALL) // v is a vector
-    // access columns j through k
-    #define BMO_MATOPS_MIDDLE_COLS(x, j, k) (x).middleCols(j,k-j+1)
-    #define BMO_MATOPS_MIDDLE_ROWS(x, j, k) (x).middleRows(j,k-j+1)
-#endif
-
-//
+template<typename T1, typename T2>
+constexpr
+bool
+any_nan(const T1 x, const T2 y)
+noexcept
+{
+    return( std::isnan(x) || std::isnan(y) );
+}
 
 #endif
