@@ -33,9 +33,11 @@
 
 #ifdef BMO_ENABLE_EIGEN_WRAPPERS
     // #define BMO_MATOPS_ONE_VEC(n) Eigen::ArrayXd::Ones(n)
-    #define BMO_MATOPS_ONE_VEC(n) Eigen::VectorXd::Ones(n)
+    // #define BMO_MATOPS_ONE_VEC(n) Eigen::VectorXd::Ones(n)
+    #define BMO_MATOPS_ONE_VEC(n) ColVec_t::Ones(n)
     // #define BMO_MATOPS_ONE_MAT(n,k) Eigen::ArrayXXd::Ones(n,k)
-    #define BMO_MATOPS_ONE_MAT(n,k) Eigen::MatrixXd::Ones(n,k)
+    // #define BMO_MATOPS_ONE_MAT(n,k) Eigen::MatrixXd::Ones(n,k)
+    #define BMO_MATOPS_ONE_MAT(n,k) Mat_t::Ones(n,k)
 #endif
 
 //

@@ -33,9 +33,11 @@
 #endif
 
 #ifdef BMO_ENABLE_EIGEN_WRAPPERS
-    #define BMO_MATOPS_ZERO_VEC(n) Eigen::VectorXd::Zero(n)
-    #define BMO_MATOPS_ZERO_ROWVEC(n) Eigen::VectorXd::Zero(n).transpose()
-    #define BMO_MATOPS_ZERO_MAT(n,k) Eigen::MatrixXd::Zero(n,k)
+    // #define BMO_MATOPS_ZERO_VEC(n) Eigen::VectorXd::Zero(n)
+    #define BMO_MATOPS_ZERO_VEC(n) ColVec_t::Zero(n)
+    #define BMO_MATOPS_ZERO_ROWVEC(n) ColVec_t::Zero(n).transpose()
+    // #define BMO_MATOPS_ZERO_MAT(n,k) Eigen::MatrixXd::Zero(n,k)
+    #define BMO_MATOPS_ZERO_MAT(n,k) Mat_t::Zero(n,k)
 #endif
 
 //
