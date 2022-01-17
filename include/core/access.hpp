@@ -34,8 +34,8 @@
     #define BMO_MATOPS_COLS(x, v) (x)(BMO_EIGEN_INDEX_ALL,v) // v is a vector
     #define BMO_MATOPS_ROWS(x, v) (x)(v,BMO_EIGEN_INDEX_ALL) // v is a vector
     // access columns j through k
-    #define BMO_MATOPS_MIDDLE_COLS(x, j, k) (x).middleCols(j,k-j+1)
-    #define BMO_MATOPS_MIDDLE_ROWS(x, j, k) (x).middleRows(j,k-j+1)
+    #define BMO_MATOPS_MIDDLE_COLS(x, j, k) (x).middleCols(j,(k)-(j)+1)
+    #define BMO_MATOPS_MIDDLE_ROWS(x, j, k) (x).middleRows(j,(k)-(j)+1)
 #endif
 
 //
