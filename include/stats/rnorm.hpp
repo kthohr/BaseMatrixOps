@@ -126,6 +126,16 @@ rsnorm_vec(size_t n_vals, rand_engine_t& engine)
     return rnorm_vec(n_vals, T(0), T(1), engine);
 }
 
+template<typename T>
+inline
+ColVec_t
+rsnorm_vec(size_t n_vals)
+{
+    rand_engine_t engine(std::random_device{}());
+    
+    return rnorm_vec(n_vals, T(0), T(1), engine);
+}
+
 //
 
 template<typename T1, typename T2>
@@ -149,5 +159,15 @@ inline
 Mat_t
 rsnorm_mat(size_t nr, size_t nc, rand_engine_t& engine)
 {
+    return rnorm_mat(nr, nc, T(0), T(1), engine);
+}
+
+template<typename T>
+inline
+Mat_t
+rsnorm_mat(size_t nr, size_t nc)
+{
+    rand_engine_t engine(std::random_device{}());
+    
     return rnorm_mat(nr, nc, T(0), T(1), engine);
 }

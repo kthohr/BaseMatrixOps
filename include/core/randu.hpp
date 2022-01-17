@@ -31,9 +31,9 @@
 
 #ifdef BMO_ENABLE_EIGEN_WRAPPERS
     // acces columns j through k
-    #define BMO_MATOPS_RANDU_VEC(j) (Eigen::VectorXd::Random(j).array() * 0.5 + 0.5).matrix()
-    #define BMO_MATOPS_RANDU_ROWVEC(j) (Eigen::VectorXd::Random(j).array() * 0.5 + 0.5).matrix().transpose()
-    #define BMO_MATOPS_RANDU_MAT(j,k) (Eigen::MatrixXd::Random(j,k).array() * 0.5 + 0.5).matrix()
+    #define BMO_MATOPS_RANDU_VEC(j) (ColVec_t::Random(j).array() * 0.5 + 0.5).matrix()
+    #define BMO_MATOPS_RANDU_ROWVEC(j) (ColVec_t::Random(j).array() * 0.5 + 0.5).matrix().transpose()
+    #define BMO_MATOPS_RANDU_MAT(j,k) (Mat_t::Random(j,k).array() * 0.5 + 0.5).matrix()
 #endif
 
 //

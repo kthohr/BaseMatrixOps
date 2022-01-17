@@ -29,31 +29,34 @@
 #endif
 
 #ifdef BMO_ENABLE_EIGEN_WRAPPERS
-    inline
-    ColVec_t
-    bmo_eigen_randn_colvec(size_t nr)
-    {
-        static std::mt19937 gen{ std::random_device{}() };
-        static std::normal_distribution<> dist;
+    // inline
+    // ColVec_t
+    // bmo_eigen_randn_colvec(size_t nr)
+    // {
+    //     static std::mt19937 gen{ std::random_device{}() };
+    //     static std::normal_distribution<> dist;
 
-        // return Eigen::VectorXd{ nr }.unaryExpr([&](double x) { (void)(x); return dist(gen); });
-        return ColVec_t{ nr }.unaryExpr([&](double x) { (void)(x); return dist(gen); });
-    }
+    //     // return Eigen::VectorXd{ nr }.unaryExpr([&](double x) { (void)(x); return dist(gen); });
+    //     return ColVec_t{ nr }.unaryExpr([&](double x) { (void)(x); return dist(gen); });
+    // }
 
-    inline
-    Mat_t
-    bmo_eigen_randn_mat(size_t nr, size_t nc)
-    {
-        static std::mt19937 gen{ std::random_device{}() };
-        static std::normal_distribution<> dist;
+    // inline
+    // Mat_t
+    // bmo_eigen_randn_mat(size_t nr, size_t nc)
+    // {
+    //     static std::mt19937 gen{ std::random_device{}() };
+    //     static std::normal_distribution<> dist;
 
-        // return Eigen::MatrixXd{ nr, nc }.unaryExpr([&](double x) { (void)(x); return dist(gen); });
-        return Mat_t{ nr, nc }.unaryExpr([&](double x) { (void)(x); return dist(gen); });
-    }
+    //     // return Eigen::MatrixXd{ nr, nc }.unaryExpr([&](double x) { (void)(x); return dist(gen); });
+    //     return Mat_t{ nr, nc }.unaryExpr([&](double x) { (void)(x); return dist(gen); });
+    // }
 
-    #define BMO_MATOPS_RANDN_VEC(j) bmo_eigen_randn_colvec(j)
-    #define BMO_MATOPS_RANDN_ROWVEC(j) (bmo_eigen_randn_colvec(j)).transpose()
-    #define BMO_MATOPS_RANDN_MAT(j,k) bmo_eigen_randn_mat(j,k)
+    // #define BMO_MATOPS_RANDN_VEC(j) bmo_eigen_randn_colvec(j)
+    // #define BMO_MATOPS_RANDN_ROWVEC(j) (bmo_eigen_randn_colvec(j)).transpose()
+    // #define BMO_MATOPS_RANDN_MAT(j,k) bmo_eigen_randn_mat(j,k)
+    #define BMO_MATOPS_RANDN_VEC(j) bmo_stats::rsnorm_vec<fp_t>(j)
+    #define BMO_MATOPS_RANDN_ROWVEC(j) (bmo_stats::rsnorm_vec<fp_t>(j)).transpose()
+    #define BMO_MATOPS_RANDN_MAT(j,k) bmo_stats::rsnorm_mat<fp_t>(j,k)
 #endif
 
 //
