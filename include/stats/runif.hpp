@@ -46,10 +46,13 @@ noexcept
 template<typename T>
 inline
 T
-runif_compute(const T a_par, const T b_par, rand_engine_t& engine)
+runif_compute(const T a_par, const T b_par, rand_engine_t& engine, 
+              const bool skip_sanity_check = false)
 {
-    if (!unif_sanity_check(a_par,b_par)) {
-        return std::numeric_limits<T>::quiet_NaN();
+    if (!skip_sanity_check) {
+        if (!unif_sanity_check(a_par,b_par)) {
+            return std::numeric_limits<T>::quiet_NaN();
+        }
     }
     
     // convert from [a,b) to (a,b)

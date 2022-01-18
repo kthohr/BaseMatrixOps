@@ -33,11 +33,7 @@ inline
 size_t
 rind_compute(const T a_par, const T b_par, rand_engine_t& engine)
 {
-    if (!unif_sanity_check(a_par,b_par)) {
-        return std::numeric_limits<T>::quiet_NaN();
-    }
-
-    return static_cast<size_t>( runif_compute(a_par, b_par + T(1), engine) );
+    return static_cast<size_t>( runif_compute(a_par, b_par + T(1), engine, true) );
 }
 
 template<typename T1, typename T2, typename TC = common_return_t<T1,T2>>
