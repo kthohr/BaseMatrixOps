@@ -121,7 +121,7 @@ rnorm_vec(size_t n_vals, const T1 mu_par, const T2 sigma_par, rand_engine_t& eng
 template<typename T, typename vT = ColVec_t>
 inline
 vT
-rsnorm_vec(size_t n_vals, rand_engine_t& engine)
+rnorm_vec(size_t n_vals, rand_engine_t& engine)
 {
     return rnorm_vec(n_vals, T(0), T(1), engine);
 }
@@ -129,7 +129,7 @@ rsnorm_vec(size_t n_vals, rand_engine_t& engine)
 template<typename T, typename vT = ColVec_t>
 inline
 vT
-rsnorm_vec(size_t n_vals)
+rnorm_vec(size_t n_vals)
 {
     rand_engine_t engine(std::random_device{}());
     

@@ -54,8 +54,8 @@
     // #define BMO_MATOPS_RANDN_VEC(j) bmo_eigen_randn_colvec(j)
     // #define BMO_MATOPS_RANDN_ROWVEC(j) (bmo_eigen_randn_colvec(j)).transpose()
     // #define BMO_MATOPS_RANDN_MAT(j,k) bmo_eigen_randn_mat(j,k)
-    #define BMO_MATOPS_RANDN_VEC(j) bmo_stats::rsnorm_vec<fp_t>(j)
-    #define BMO_MATOPS_RANDN_ROWVEC(j) (bmo_stats::rsnorm_vec<fp_t>(j)).transpose()
+    #define BMO_MATOPS_RANDN_VEC(j) bmo_stats::rnorm_vec<fp_t>(j)
+    #define BMO_MATOPS_RANDN_ROWVEC(j) (bmo_stats::rnorm_vec<fp_t>(j)).transpose()
     #define BMO_MATOPS_RANDN_MAT(j,k) bmo_stats::rsnorm_mat<fp_t>(j,k)
 #endif
 
