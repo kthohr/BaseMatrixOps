@@ -27,11 +27,10 @@
 //
 
 #ifdef BMO_ENABLE_ARMA_WRAPPERS
-    #define BMO_MATOPS_EYE(n) arma::eye(n,n)
+    #define BMO_MATOPS_EYE(n) Mat_t(n,n,arma::fill::eye)
 #endif
 
 #ifdef BMO_ENABLE_EIGEN_WRAPPERS
-    // #define BMO_MATOPS_EYE(n) Eigen::MatrixXd::Identity(n,n)
     #define BMO_MATOPS_EYE(n) Mat_t::Identity(n,n)
 #endif
 

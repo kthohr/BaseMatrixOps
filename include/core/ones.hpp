@@ -22,21 +22,19 @@
  * Vector/matrix of ones
  */
 
-#ifndef BMO_MATOPS_ONE_VEC
+#ifndef BMO_MATOPS_ONE_COLVEC
 
 //
 
 #ifdef BMO_ENABLE_ARMA_WRAPPERS
-    #define BMO_MATOPS_ONE_VEC(n) arma::ones(n,1)
-    #define BMO_MATOPS_ONE_MAT(n,k) arma::ones(n,k)
+    #define BMO_MATOPS_ONE_COLVEC(n) ColVec_t(n,arma::fill::ones)
+    #define BMO_MATOPS_ONE_ROWVEC(n) RowVec_t(n,farma::ill::ones)
+    #define BMO_MATOPS_ONE_MAT(n,k) Mat_t(n,k,arma::fill::ones)
 #endif
 
 #ifdef BMO_ENABLE_EIGEN_WRAPPERS
-    // #define BMO_MATOPS_ONE_VEC(n) Eigen::ArrayXd::Ones(n)
-    // #define BMO_MATOPS_ONE_VEC(n) Eigen::VectorXd::Ones(n)
-    #define BMO_MATOPS_ONE_VEC(n) ColVec_t::Ones(n)
-    // #define BMO_MATOPS_ONE_MAT(n,k) Eigen::ArrayXXd::Ones(n,k)
-    // #define BMO_MATOPS_ONE_MAT(n,k) Eigen::MatrixXd::Ones(n,k)
+    #define BMO_MATOPS_ONE_COLVEC(n) ColVec_t::Ones(n)
+    #define BMO_MATOPS_ONE_ROWVEC(n) RowVec_t::Ones(n)
     #define BMO_MATOPS_ONE_MAT(n,k) Mat_t::Ones(n,k)
 #endif
 

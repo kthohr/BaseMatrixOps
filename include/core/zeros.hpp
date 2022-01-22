@@ -27,14 +27,14 @@
 //
 
 #ifdef BMO_ENABLE_ARMA_WRAPPERS
-    #define BMO_MATOPS_ZERO_VEC(n) arma::zeros(n,1)
-    #define BMO_MATOPS_ZERO_ROWVEC(n) arma::zeros(1,n)
-    #define BMO_MATOPS_ZERO_MAT(n,k) arma::zeros(n,k)
+    #define BMO_MATOPS_ZERO_COLVEC(n) ColVec_t(n,arma::fill::zeros)
+    #define BMO_MATOPS_ZERO_ROWVEC(n) RowVec_t(n,farma::ill::zeros)
+    #define BMO_MATOPS_ZERO_MAT(n,k) Mat_t(n,k,arma::fill::zeros)
 #endif
 
 #ifdef BMO_ENABLE_EIGEN_WRAPPERS
-    // #define BMO_MATOPS_ZERO_VEC(n) Eigen::VectorXd::Zero(n)
-    #define BMO_MATOPS_ZERO_VEC(n) ColVec_t::Zero(n)
+    // #define BMO_MATOPS_ZERO_COLVEC(n) Eigen::VectorXd::Zero(n)
+    #define BMO_MATOPS_ZERO_COLVEC(n) ColVec_t::Zero(n)
     #define BMO_MATOPS_ZERO_ROWVEC(n) ColVec_t::Zero(n).transpose()
     // #define BMO_MATOPS_ZERO_MAT(n,k) Eigen::MatrixXd::Zero(n,k)
     #define BMO_MATOPS_ZERO_MAT(n,k) Mat_t::Zero(n,k)

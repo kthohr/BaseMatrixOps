@@ -30,7 +30,7 @@ ColVec_t
 unit_vec(const size_t j, 
          const size_t n)
 {
-    ColVec_t ret = BMO_MATOPS_ZERO_VEC(n);
+    ColVec_t ret = BMO_MATOPS_ZERO_COLVEC(n);
     ret(j) = 1;
 
     return ret;
