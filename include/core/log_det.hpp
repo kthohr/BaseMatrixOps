@@ -18,18 +18,20 @@
   ##
   ################################################################################*/
 
-#ifndef BMO_MATOPS_ARRAY_MULT_SCALAR
+/*
+ * x A x and x A^{-1} x
+ */
+
+#ifndef BMO_MATOPS_LOG_DET
 
 //
 
 #ifdef BMO_ENABLE_ARMA_WRAPPERS
-    #define BMO_MATOPS_ARRAY_MULT_SCALAR(x,a) (x) * (a)
-    #define BMO_MATOPS_ARRAY_MULT_ARRAY(x,y) (x) % (y)
+    #define BMO_MATOPS_LOG_DET(A) 2 * arma::accu( arma::log( arma::chol(A,"lower").diag() ) )
 #endif
 
 #ifdef BMO_ENABLE_EIGEN_WRAPPERS
-    #define BMO_MATOPS_ARRAY_MULT_SCALAR(x,a) ((x).array() * (a)).matrix()
-    #define BMO_MATOPS_ARRAY_MULT_ARRAY(x,y) ((x).array() * (y).array()).matrix()
+    #define BMO_MATOPS_LOG_DET(A) ( (A).llt().matrixL().diagonal().array().log() * 2 ).sum()
 #endif
 
 //

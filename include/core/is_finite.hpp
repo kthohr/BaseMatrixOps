@@ -28,7 +28,7 @@
 
 #ifdef BMO_ENABLE_EIGEN_WRAPPERS
     // see: https://forum.kde.org/viewtopic.php?f=74&t=91514
-    #define BMO_MATOPS_IS_FINITE(x) (static_cast<bool>((( (x).array() == (x).array() )).all()))
+    #define BMO_MATOPS_IS_FINITE(x) static_cast<bool>((( (x - (x)).array() == (x - (x)).array() )).all())
 #endif
 
 //

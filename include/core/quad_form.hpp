@@ -18,18 +18,22 @@
   ##
   ################################################################################*/
 
-#ifndef BMO_MATOPS_ARRAY_MULT_SCALAR
+/*
+ * x A x and x A^{-1} x
+ */
+
+#ifndef BMO_MATOPS_QUAD_FORM
 
 //
 
 #ifdef BMO_ENABLE_ARMA_WRAPPERS
-    #define BMO_MATOPS_ARRAY_MULT_SCALAR(x,a) (x) * (a)
-    #define BMO_MATOPS_ARRAY_MULT_ARRAY(x,y) (x) % (y)
+    #define BMO_MATOPS_QUAD_FORM(x,A) arma::dot(x,A*x)
+    #define BMO_MATOPS_QUAD_FORM_INV(x,A) arma::dot(x,arma::solve(A,x))
 #endif
 
 #ifdef BMO_ENABLE_EIGEN_WRAPPERS
-    #define BMO_MATOPS_ARRAY_MULT_SCALAR(x,a) ((x).array() * (a)).matrix()
-    #define BMO_MATOPS_ARRAY_MULT_ARRAY(x,y) ((x).array() * (y).array()).matrix()
+    #define BMO_MATOPS_QUAD_FORM(x,A) (x).dot( (A).dot(x) ).value()
+    #define BMO_MATOPS_QUAD_FORM_INV(x,A) (x).dot( (A).colPivHouseholderQr().solve(x) ).value()
 #endif
 
 //
