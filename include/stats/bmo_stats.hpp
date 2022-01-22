@@ -21,14 +21,14 @@
 #ifndef BMO_STATS_INCLUDES
 #define BMO_STATS_INCLUDES
 
-#ifndef BMO_RAND_ENGINE_TYPE
-    #define BMO_RAND_ENGINE_TYPE std::mt19937_64;
+#ifndef BMO_RNG_ENGINE_TYPE
+    #define BMO_RNG_ENGINE_TYPE std::mt19937_64;
 #endif
 
 namespace bmo_stats
 {
 
-using rand_engine_t = BMO_RAND_ENGINE_TYPE;
+using rand_engine_t = BMO_RNG_ENGINE_TYPE;
 
 template<typename T>
 using return_t = typename std::conditional<std::is_integral<T>::value,double,T>::type;
