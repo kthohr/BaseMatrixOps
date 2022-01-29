@@ -18,50 +18,22 @@
   ##
   ################################################################################*/
 
-#ifndef BMO_CORE_INCLUDES
-#define BMO_CORE_INCLUDES
+/*
+ * Cholesky decomposition
+ * note: returns a lower triangular matrix
+ */
+
+#ifndef BMO_MATOPS_CHOL
 
 //
 
-#include "abs.hpp"
-#include "abs_max.hpp"
-#include "accu.hpp"
-#include "access.hpp"
-#include "array_add.hpp"
-#include "array_div.hpp"
-#include "as_scalar.hpp"
-#include "cholesky.hpp"
-#include "cos.hpp"
-#include "cout.hpp"
-#include "diagmat.hpp"
-#include "diagvec.hpp"
-#include "dot.hpp"
-#include "endl.hpp"
-#include "eval.hpp"
-#include "exp.hpp"
-#include "eye.hpp"
-#include "hadamard.hpp"
-#include "is_finite.hpp"
-#include "inv.hpp"
-#include "log.hpp"
-#include "log_det.hpp"
-#include "max.hpp"
-#include "min.hpp"
-#include "ncol.hpp"
-#include "norm.hpp"
-#include "ones.hpp"
-#include "pow.hpp"
-#include "quad_form.hpp"
-#include "randi.hpp"
-#include "randn.hpp"
-#include "randu.hpp"
-#include "set_size.hpp"
-#include "size.hpp"
-#include "solve.hpp"
-#include "sqrt.hpp"
-#include "sum.hpp"
-#include "transpose.hpp"
-#include "zeros.hpp"
+#ifdef BMO_ENABLE_ARMA_WRAPPERS
+    #define BMO_MATOPS_CHOL(A) arma::chol(A,"lower")
+#endif
+
+#ifdef BMO_ENABLE_EIGEN_WRAPPERS
+    #define BMO_MATOPS_CHOL(A) (A).llt().matrixL()
+#endif
 
 //
 
