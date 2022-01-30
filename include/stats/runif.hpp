@@ -108,6 +108,31 @@ runif()
 
 //
 
+namespace internal
+{
+
+template<typename T1, typename T2, typename vT>
+inline
+void
+runif_vec_inplace(size_t n_vals, const T1 a_par, const T2 b_par, rand_engine_t& engine, vT& vec_out)
+{
+    for (size_t i=0; i < n_vals; ++i) {
+        vec_out(i) = runif(a_par, b_par, engine);
+    }
+}
+
+template<typename fT, typename vT>
+inline
+void
+runif_vec_inplace(size_t n_vals, rand_engine_t& engine, vT& vec_out)
+{
+    for (size_t i=0; i < n_vals; ++i) {
+        vec_out(i) = runif(fT(0), fT(1), engine);
+    }
+}
+
+}
+
 template<typename T1, typename T2, typename vT = ColVec_t>
 inline
 vT
@@ -115,9 +140,7 @@ runif_vec(size_t n_vals, const T1 a_par, const T2 b_par, rand_engine_t& engine)
 {
     vT ret_vec(n_vals);
 
-    for (size_t i=0; i < n_vals; ++i) {
-        ret_vec(i) = runif(a_par, b_par, engine);
-    }
+    internal::runif_vec_inplace(n_vals, a_par, b_par, engine, ret_vec);
 
     return ret_vec;
 }
@@ -161,7 +184,7 @@ runif_mat(size_t nr, size_t nc, const T1 a_par, const T2 b_par, rand_engine_t& e
 template<typename T>
 inline
 Mat_t
-rsunif_mat(size_t nr, size_t nc, rand_engine_t& engine)
+runif_mat(size_t nr, size_t nc, rand_engine_t& engine)
 {
     return runif_mat(nr, nc, T(0), T(1), engine);
 }
@@ -169,7 +192,7 @@ rsunif_mat(size_t nr, size_t nc, rand_engine_t& engine)
 template<typename T>
 inline
 Mat_t
-rsunif_mat(size_t nr, size_t nc)
+runif_mat(size_t nr, size_t nc)
 {
     rand_engine_t engine(std::random_device{}());
 

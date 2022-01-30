@@ -20,19 +20,20 @@
 
 /*
  * Cholesky decomposition
- * note: returns a lower triangular matrix
  */
 
-#ifndef BMO_MATOPS_CHOL
+#ifndef BMO_MATOPS_CHOL_LOWER
 
 //
 
 #ifdef BMO_ENABLE_ARMA_WRAPPERS
-    #define BMO_MATOPS_CHOL(A) arma::chol(A,"lower")
+    // returns a lower triangular matrix
+    #define BMO_MATOPS_CHOL_LOWER(A) arma::chol(A,"lower")
 #endif
 
 #ifdef BMO_ENABLE_EIGEN_WRAPPERS
-    #define BMO_MATOPS_CHOL(A) (A).llt().matrixL()
+    // returns a lower triangular matrix
+    #define BMO_MATOPS_CHOL_LOWER(A) (A).llt().matrixL()
 #endif
 
 //

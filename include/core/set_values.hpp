@@ -18,22 +18,17 @@
   ##
   ################################################################################*/
 
-/*
- * Transpose in place
- */
-
-#ifndef BMO_MATOPS_TRANSPOSE
+#ifndef BMO_MATOPS_SET_VALUES_SCALAR
 
 //
 
 #ifdef BMO_ENABLE_ARMA_WRAPPERS
-    #define BMO_MATOPS_TRANSPOSE(x) arma::trans(x)
-    #define BMO_MATOPS_TRANSPOSE_INPLACE(x) (x).t()
+    #define BMO_MATOPS_SET_VALUES_SCALAR(x,a) (x).fill(a)
 #endif
 
 #ifdef BMO_ENABLE_EIGEN_WRAPPERS
-    #define BMO_MATOPS_TRANSPOSE(x) (x).transpose()
-    #define BMO_MATOPS_TRANSPOSE_INPLACE(x) (x).transpose()
+    // .fill() also works for Eigen; .fill() is an alias of .setConstant()
+    #define BMO_MATOPS_SET_VALUES_SCALAR(x,a) (x).setConstant(a)
 #endif
 
 //

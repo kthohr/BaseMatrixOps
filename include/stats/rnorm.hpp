@@ -104,6 +104,31 @@ rnorm()
 
 //
 
+namespace internal
+{
+
+template<typename T1, typename T2, typename vT>
+inline
+void
+rnorm_vec_inplace(size_t n_vals, const T1 mu_par, const T2 sigma_par, rand_engine_t& engine, vT& vec_out)
+{
+    for (size_t i=0; i < n_vals; ++i) {
+        vec_out(i) = rnorm(mu_par, sigma_par, engine);
+    }
+}
+
+template<typename fT, typename vT>
+inline
+void
+rnorm_vec_inplace(size_t n_vals, rand_engine_t& engine, vT& vec_out)
+{
+    for (size_t i=0; i < n_vals; ++i) {
+        vec_out(i) = rnorm(fT(0), fT(1), engine);
+    }
+}
+
+}
+
 template<typename T1, typename T2, typename vT = ColVec_t>
 inline
 vT
@@ -111,9 +136,7 @@ rnorm_vec(size_t n_vals, const T1 mu_par, const T2 sigma_par, rand_engine_t& eng
 {
     vT ret_vec(n_vals);
 
-    for (size_t i=0; i < n_vals; ++i) {
-        ret_vec(i) = rnorm(mu_par, sigma_par, engine);
-    }
+    internal::rnorm_vec_inplace(n_vals, mu_par, sigma_par, engine, ret_vec);
 
     return ret_vec;
 }

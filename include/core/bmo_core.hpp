@@ -56,6 +56,7 @@
 #include "randn.hpp"
 #include "randu.hpp"
 #include "set_size.hpp"
+#include "set_values.hpp"
 #include "size.hpp"
 #include "solve.hpp"
 #include "sqrt.hpp"
