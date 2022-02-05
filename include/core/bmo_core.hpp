@@ -31,6 +31,7 @@
 #include "array_div.hpp"
 #include "as_scalar.hpp"
 #include "cholesky.hpp"
+#include "constant.hpp"
 #include "cos.hpp"
 #include "cout.hpp"
 #include "diagmat.hpp"

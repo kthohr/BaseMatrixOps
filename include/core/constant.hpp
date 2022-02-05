@@ -19,23 +19,23 @@
   ################################################################################*/
 
 /*
- * Vector/matrix of ones
+ * Vector/matrix of user-defined values
  */
 
-#ifndef BMO_MATOPS_ONE_COLVEC
+#ifndef BMO_MATOPS_CONSTANT_COLVEC
 
 //
 
 #ifdef BMO_ENABLE_ARMA_WRAPPERS
-    #define BMO_MATOPS_ONE_COLVEC(n) ColVec_t(n,arma::fill::ones)
-    #define BMO_MATOPS_ONE_ROWVEC(n) RowVec_t(n,arma::fill::ones)
-    #define BMO_MATOPS_ONE_MAT(n,k) Mat_t(n,k,arma::fill::ones)
+    #define BMO_MATOPS_CONSTANT_COLVEC(n,a) ColVec_t(n,arma::fill::value(a))
+    #define BMO_MATOPS_CONSTANT_ROWVEC(n,a) RowVec_t(n,arma::fill::value(a))
+    #define BMO_MATOPS_CONSTANT_MAT(n,k,a) Mat_t(n,k,arma::fill::value(a))
 #endif
 
 #ifdef BMO_ENABLE_EIGEN_WRAPPERS
-    #define BMO_MATOPS_ONE_COLVEC(n) ColVec_t::Ones(n)
-    #define BMO_MATOPS_ONE_ROWVEC(n) RowVec_t::Ones(n)
-    #define BMO_MATOPS_ONE_MAT(n,k) Mat_t::Ones(n,k)
+    #define BMO_MATOPS_CONSTANT_COLVEC(n,a) ColVec_t::Constant(n,a)
+    #define BMO_MATOPS_CONSTANT_ROWVEC(n,a) RowVec_t::Constant(n,a)
+    #define BMO_MATOPS_CONSTANT_MAT(n,k,a) Mat_t::Constant(n,k,a)
 #endif
 
 //
