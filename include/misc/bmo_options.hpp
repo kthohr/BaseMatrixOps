@@ -8,7 +8,7 @@
 #endif
 
 #ifndef BMO_VERSION_MINOR
-    #define BMO_VERSION_MINOR 1
+    #define BMO_VERSION_MINOR 2
 #endif
 
 #ifndef BMO_VERSION_PATCH

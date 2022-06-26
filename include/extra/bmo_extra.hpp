@@ -30,4 +30,9 @@
 
 //
 
+#ifdef BMO_ENABLE_EXTRA_EXPERIMENTAL
+    #include "eigen_cube_type.hpp"
+    #include "eigen_tesseract_type.hpp"
+#endif
+
 #endif
