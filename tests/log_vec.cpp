@@ -2,7 +2,7 @@
   ##
   ##   Copyright (C) 2016-2022 Keith O'Hara
   ##
-  ##   This file is part of the GCE-Math C++ library.
+  ##   This file is part of the BaseMatrixOps C++ library.
   ##
   ##   Licensed under the Apache License, Version 2.0 (the "License");
   ##   you may not use this file except in compliance with the License.

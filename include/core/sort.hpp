@@ -18,28 +18,27 @@
   ##
   ################################################################################*/
 
-#ifndef BMO_EXTRA_GET_SORT_INDEX
-#define BMO_EXTRA_GET_SORT_INDEX
+/*
+ * sort
+ */
+
+#ifndef BMO_MATOPS_SORT
+
+namespace bmo {
 
 inline
-ColVecUInt_t
-get_sort_index(const ColVec_t& vec_in)
+void
+sort(ColVec_t& vec_in, const bool ascending = true)
 {
-    const size_t n = BMO_MATOPS_SIZE(vec_in);
-
-    std::vector<size_t> idx(n, static_cast<size_t>(0));
-    std::iota(idx.begin(), idx.end(), static_cast<size_t>(0));
-
-    std::sort(idx.begin(), idx.end(),
-         [&vec_in](size_t i1, size_t i2) {return vec_in(i1) < vec_in(i2);});
-
-    ColVecUInt_t out_vec(n);
-
-    for (size_t i = 0; i < n; ++i) {
-        out_vec(i) = idx[i];
+    if (ascending) {
+        std::sort(vec_in.begin(), vec_in.end(), 
+            [](auto a, auto b) {return a < b;});
+    } else {
+        std::sort(vec_in.begin(), vec_in.end(), 
+            [](auto a, auto b) {return a > b;});
     }
+}
 
-    return out_vec;
 }
 
 #endif

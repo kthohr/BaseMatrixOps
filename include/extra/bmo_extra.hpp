@@ -23,16 +23,18 @@
 
 //
 
+namespace bmo {
+
 #include "get_sort_index.hpp"
 #include "index_min.hpp"
 #include "reset_negative_values.hpp"
 #include "unit_vec.hpp"
 
-//
-
 #ifdef BMO_ENABLE_EXTRA_EXPERIMENTAL
-    #include "eigen_cube_type.hpp"
-    #include "eigen_tesseract_type.hpp"
+    #include "cube_type.hpp"
+    #include "tesseract_type.hpp"
 #endif
+
+}
 
 #endif

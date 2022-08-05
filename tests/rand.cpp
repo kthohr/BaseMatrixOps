@@ -2,7 +2,7 @@
   ##
   ##   Copyright (C) 2016-2022 Keith O'Hara
   ##
-  ##   This file is part of the GCE-Math C++ library.
+  ##   This file is part of the BaseMatrixOps C++ library.
   ##
   ##   Licensed under the Apache License, Version 2.0 (the "License");
   ##   you may not use this file except in compliance with the License.
@@ -26,19 +26,19 @@ int main()
 {
     const int n_vals = 4;
 
-    bmo_stats::rand_engine_t engine(1);
+    bmo::stats::rand_engine_t engine(1);
 
     //
 
-    ColVec_t runif_test_vec = bmo_stats::runif_vec<double>(n_vals, engine);
+    ColVec_t runif_test_vec = bmo::stats::runif_vec<double>(n_vals, engine);
     
     BMO_MATOPS_COUT << runif_test_vec << BMO_MATOPS_ENDL;
 
-    ColVec_t rnorm_test_vec = bmo_stats::rnorm_vec<double>(n_vals, engine);
+    ColVec_t rnorm_test_vec = bmo::stats::rnorm_vec<double>(n_vals, engine);
     
     BMO_MATOPS_COUT << rnorm_test_vec << BMO_MATOPS_ENDL;
 
-    ColVec_t rind_test_vec = bmo_stats::rind_vec(n_vals, 0, 3, engine);
+    ColVec_t rind_test_vec = bmo::stats::rind_vec(n_vals, 0, 3, engine);
     
     BMO_MATOPS_COUT << rind_test_vec << BMO_MATOPS_ENDL;
 

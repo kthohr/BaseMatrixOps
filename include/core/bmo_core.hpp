@@ -60,6 +60,7 @@
 #include "set_values.hpp"
 #include "size.hpp"
 #include "solve.hpp"
+#include "sort.hpp"
 #include "sqrt.hpp"
 #include "sum.hpp"
 #include "transpose.hpp"

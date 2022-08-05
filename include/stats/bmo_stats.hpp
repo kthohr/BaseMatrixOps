@@ -25,7 +25,9 @@
     #define BMO_RNG_ENGINE_TYPE std::mt19937_64;
 #endif
 
-namespace bmo_stats
+namespace bmo
+{
+namespace stats
 {
 
 using rand_engine_t = BMO_RNG_ENGINE_TYPE;
@@ -46,6 +48,7 @@ using common_return_t = return_t<common_t<T...>>;
 
 #include "rind.hpp"
 
+}
 }
 
 #endif

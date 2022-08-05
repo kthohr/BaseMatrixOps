@@ -18,28 +18,29 @@
   ##
   ################################################################################*/
 
-#ifndef BMO_EXTRA_GET_SORT_INDEX
-#define BMO_EXTRA_GET_SORT_INDEX
+#define BMO_ENABLE_STATS_FEATURES
 
-inline
-ColVecUInt_t
-get_sort_index(const ColVec_t& vec_in)
+#include "bmo_tests.hpp"
+
+int main()
 {
-    const size_t n = BMO_MATOPS_SIZE(vec_in);
+    const int n_vals = 4;
 
-    std::vector<size_t> idx(n, static_cast<size_t>(0));
-    std::iota(idx.begin(), idx.end(), static_cast<size_t>(0));
+    bmo::stats::rand_engine_t engine(1);
 
-    std::sort(idx.begin(), idx.end(),
-         [&vec_in](size_t i1, size_t i2) {return vec_in(i1) < vec_in(i2);});
+    //
 
-    ColVecUInt_t out_vec(n);
+    ColVec_t runif_test_vec = bmo::stats::runif_vec<double>(n_vals, engine);
+    
+    BMO_MATOPS_COUT << "original:\n" << runif_test_vec << BMO_MATOPS_ENDL;
 
-    for (size_t i = 0; i < n; ++i) {
-        out_vec(i) = idx[i];
-    }
+    bmo::sort(runif_test_vec);
 
-    return out_vec;
+    BMO_MATOPS_COUT << "\nsort asc:\n" << runif_test_vec << BMO_MATOPS_ENDL;
+
+    bmo::sort(runif_test_vec, false);
+
+    BMO_MATOPS_COUT << "\nsort desc:\n" << runif_test_vec << BMO_MATOPS_ENDL;
+
+    return 0;
 }
-
-#endif

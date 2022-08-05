@@ -6,8 +6,6 @@
     
     #include "armadillo"
 
-    using Mat_t = arma::mat;
-
     using ColVec_t = arma::vec;
     using RowVec_t = arma::rowvec;
 
@@ -16,6 +14,8 @@
 
     using ColVecUInt_t = arma::Col<unsigned long long>;
     using RowVecUInt_t = arma::Row<unsigned long long>;
+
+    using Mat_t = arma::mat;
 #endif
 
 //
@@ -25,11 +25,6 @@
     #include <random>
     #include <Eigen/Dense>
 
-    template<typename eT, int iTr, int iTc>
-    using EigenMat = Eigen::Matrix<eT,iTr,iTc>;
-
-    using Mat_t = Eigen::MatrixXd;
-
     using ColVec_t = Eigen::VectorXd;
     using RowVec_t = Eigen::Matrix<double,1,Eigen::Dynamic>;
 
@@ -38,6 +33,11 @@
 
     using ColVecUInt_t = Eigen::Matrix<size_t, Eigen::Dynamic, 1>;
     using RowVecUInt_t = Eigen::Matrix<size_t, 1, Eigen::Dynamic>;
+
+    template<typename eT, int iTr, int iTc>
+    using EigenMat = Eigen::Matrix<eT,iTr,iTc>;
+
+    using Mat_t = Eigen::MatrixXd;
 #endif
 
 #include "BaseMatrixOps.hpp"

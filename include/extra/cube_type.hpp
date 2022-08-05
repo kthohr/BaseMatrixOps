@@ -18,13 +18,17 @@
   ##
   ################################################################################*/
 
-#ifdef BMO_ENABLE_EIGEN_WRAPPERS
+#if defined(BMO_ENABLE_ARMA_WRAPPERS) || defined(BMO_ENABLE_EIGEN_WRAPPERS)
 
 template<typename T>
 class Cube_t
 {
     public:
+#ifdef BMO_ENABLE_EIGEN_WRAPPERS
         typedef Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> MatData_t;
+#else
+        typedef Mat<T> MatData_t;
+#endif
         typedef std::vector< Cube_t<T>::MatData_t > CubeData_t;
 
         const size_t n_row;  // number of rows in each matrix
@@ -32,11 +36,11 @@ class Cube_t
         const size_t n_mat;  // number of matrices in each cube
 
         ~Cube_t() = default;
-         Cube_t() = default;
 
         Cube_t(const Cube_t<T>& cube_inp);
         Cube_t(Cube_t<T>&& cube_inp);
 
+        explicit Cube_t();
         explicit Cube_t(const size_t n_row_inp, const size_t n_col_inp, const size_t n_mat_inp);
 
         Cube_t<T>& operator=(const Cube_t<T>& cube_inp);
@@ -45,14 +49,15 @@ class Cube_t
         T& operator()(const size_t row_ind, const size_t col_ind, const size_t mat_ind);
         const T& operator()(const size_t row_ind, const size_t col_ind, const size_t mat_ind) const;
 
-        Cube_t<T>::MatData_t& get_mat(const size_t mat_ind);
-        const Cube_t<T>::MatData_t& get_mat(const size_t mat_ind) const;
+        Cube_t<T>::MatData_t& mat(const size_t mat_ind);
+        const Cube_t<T>::MatData_t& mat(const size_t mat_ind) const;
 
-        void set_mat(const Cube_t<T>::MatData_t& mat_inp, const size_t mat_ind);
-        void set_mat(Cube_t<T>::MatData_t&& mat_inp, const size_t mat_ind);
+        void setZero();
+        void setZero(const size_t n_row_inp, const size_t n_col_inp, const size_t n_mat_inp);
 
         CubeData_t& get_raw_data();
         const CubeData_t& get_raw_data() const;
+
         void reset_raw_data();
         void reset_dims();
 
@@ -61,6 +66,16 @@ class Cube_t
 
         void set_dims(const size_t n_row_inp, const size_t n_col_inp, const size_t n_mat_inp);
 };
+
+//
+
+template<typename T>
+inline
+Cube_t<T>::Cube_t()
+    : n_row(0), n_col(0), n_mat(0)
+{
+    raw_data_ = Cube_t<T>::CubeData_t(0, Cube_t<T>::MatData_t(0, 0));
+}
 
 template<typename T>
 inline
@@ -115,7 +130,7 @@ Cube_t<T>::operator=(Cube_t<T>&& cube_inp)
     return *this;
 }
 
-//
+// access
 
 template<typename T>
 inline
@@ -131,15 +146,13 @@ const T&
 Cube_t<T>::operator()(const size_t row_ind, const size_t col_ind, const size_t mat_ind)
 const
 {
-    return &raw_data_[mat_ind](row_ind, col_ind);
+    return raw_data_[mat_ind](row_ind, col_ind);
 }
-
-// get
 
 template<typename T>
 inline
 typename Cube_t<T>::MatData_t&
-Cube_t<T>::get_mat(const size_t mat_ind)
+Cube_t<T>::mat(const size_t mat_ind)
 {
     return raw_data_[mat_ind];
 }
@@ -147,7 +160,7 @@ Cube_t<T>::get_mat(const size_t mat_ind)
 template<typename T>
 inline
 const typename Cube_t<T>::MatData_t&
-Cube_t<T>::get_mat(const size_t mat_ind)
+Cube_t<T>::mat(const size_t mat_ind)
 const
 {
     return raw_data_[mat_ind];
@@ -158,17 +171,29 @@ const
 template<typename T>
 inline
 void
-Cube_t<T>::set_mat(const Cube_t<T>::MatData_t& mat_inp, const size_t mat_ind)
+Cube_t<T>::setZero()
 {
-    raw_data_[mat_ind] = mat_inp;
+    if (n_mat > size_t(0)) {
+        for (size_t mat_ind = 0; mat_ind < n_mat; ++mat_ind) {
+            BMO_MATOPS_SET_ZERO(raw_data_[mat_ind]);
+        }
+    }
 }
 
 template<typename T>
 inline
 void
-Cube_t<T>::set_mat(Cube_t<T>::MatData_t&& mat_inp, const size_t mat_ind)
+Cube_t<T>::setZero(const size_t n_row_inp, const size_t n_col_inp, const size_t n_mat_inp)
 {
-    raw_data_[mat_ind] = std::move(mat_inp);
+    raw_data_.resize(n_mat_inp);
+
+    if (n_mat_inp > size_t(0)) {
+        for (size_t mat_ind = 0; mat_ind < n_mat_inp; ++mat_ind) {
+            BMO_MATOPS_SET_ZERO_MAT(raw_data_[mat_ind], n_row_inp, n_col_inp);
+        }
+    }
+
+    set_dims(n_row_inp, n_col_inp, n_mat_inp);
 }
 
 //

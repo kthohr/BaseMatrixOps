@@ -18,13 +18,12 @@
   ##
   ################################################################################*/
 
-#ifdef BMO_ENABLE_EIGEN_WRAPPERS
+#if defined(BMO_ENABLE_ARMA_WRAPPERS) || defined(BMO_ENABLE_EIGEN_WRAPPERS)
 
 template<typename T>
 class Tess_t
 {
     public:
-        // typedef typename Cube_t<T>::CubeData_t CubeData_t;
         typedef std::vector< Cube_t<T> > TessData_t;
 
         const size_t n_row;  // number of rows in each matrix
@@ -33,11 +32,11 @@ class Tess_t
         const size_t n_cube; // number of cubes in the tesseract
 
         ~Tess_t() = default;
-         Tess_t() = default;
 
         Tess_t(const Tess_t<T>& tess_inp);
         Tess_t(Tess_t<T>&& tess_inp);
 
+        explicit Tess_t();
         explicit Tess_t(const size_t n_row_inp, const size_t n_col_inp, const size_t n_mat_inp, const size_t n_cube_inp);
 
         Tess_t<T>& operator=(const Tess_t<T>& tess_inp);
@@ -46,14 +45,15 @@ class Tess_t
         T& operator()(const size_t row_ind, const size_t col_ind, const size_t mat_ind, const size_t cube_ind);
         const T& operator()(const size_t row_ind, const size_t col_ind, const size_t mat_ind, const size_t cube_ind) const;
 
-        Cube_t<T>& get_cube(const size_t cube_ind);
-        const Cube_t<T>& get_cube(const size_t cube_ind) const;
+        Cube_t<T>& cube(const size_t cube_ind);
+        const Cube_t<T>& cube(const size_t cube_ind) const;
 
-        void set_cube(const Cube_t<T>& cube_inp, const size_t cube_ind);
-        void set_cube(Cube_t<T>&& cube_inp, const size_t cube_ind);
+        void setZero();
+        void setZero(const size_t n_row_inp, const size_t n_col_inp, const size_t n_mat_inp, const size_t n_cube_inp);
 
         TessData_t& get_raw_data();
         const TessData_t& get_raw_data() const;
+
         void reset_raw_data();
         void reset_dims();
 
@@ -62,6 +62,16 @@ class Tess_t
 
         void set_dims(const size_t n_row_inp, const size_t n_col_inp, const size_t n_mat_inp, const size_t n_cube_inp);
 };
+
+//
+
+template<typename T>
+inline
+Tess_t<T>::Tess_t()
+    : n_row(0), n_col(0), n_mat(0), n_cube(0)
+{
+    raw_data_ = Tess_t<T>::TessData_t(0, Cube_t<T>(0, 0, 0));
+}
 
 template<typename T>
 inline
@@ -116,7 +126,7 @@ Tess_t<T>::operator=(Tess_t<T>&& tess_inp)
     return *this;
 }
 
-//
+// access
 
 template<typename T>
 inline
@@ -135,12 +145,10 @@ const
     return &raw_data_[cube_ind](row_ind, col_ind, mat_ind);
 }
 
-// get
-
 template<typename T>
 inline
 Cube_t<T>&
-Tess_t<T>::get_cube(const size_t cube_ind)
+Tess_t<T>::cube(const size_t cube_ind)
 {
     return raw_data_[cube_ind];
 }
@@ -148,7 +156,7 @@ Tess_t<T>::get_cube(const size_t cube_ind)
 template<typename T>
 inline
 const Cube_t<T>&
-Tess_t<T>::get_cube(const size_t cube_ind)
+Tess_t<T>::cube(const size_t cube_ind)
 const
 {
     return raw_data_[cube_ind];
@@ -159,17 +167,29 @@ const
 template<typename T>
 inline
 void
-Tess_t<T>::set_cube(const Cube_t<T>& cube_inp, const size_t cube_ind)
+Tess_t<T>::setZero()
 {
-    raw_data_[cube_ind] = cube_inp;
+    if (n_cube > size_t(0)) {
+        for (size_t cube_ind = 0; cube_ind < n_cube; ++cube_ind) {
+            raw_data_[cube_ind].setZero();
+        }
+    }
 }
 
 template<typename T>
 inline
 void
-Tess_t<T>::set_cube(Cube_t<T>&& cube_inp, const size_t cube_ind)
+Tess_t<T>::setZero(const size_t n_row_inp, const size_t n_col_inp, const size_t n_mat_inp, const size_t n_cube_inp)
 {
-    raw_data_[cube_ind] = std::move(cube_inp);
+    raw_data_.resize(n_cube_inp);
+
+    if (n_cube_inp > size_t(0)) {
+        for (size_t cube_ind = 0; cube_ind < n_cube_inp; ++cube_ind) {
+            raw_data_[cube_ind].setZero(n_row_inp, n_col_inp, n_mat_inp);
+        }
+    }
+
+    set_dims(n_row_inp, n_col_inp, n_mat_inp, n_cube_inp);
 }
 
 //
