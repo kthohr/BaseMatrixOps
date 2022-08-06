@@ -27,4 +27,9 @@
         #error Eigen must be version 3.4.0 or above
     #endif
 
+    using scalar_t = ColVec_t::Scalar;
+#endif
+
+#ifdef BMO_ENABLE_ARMA_WRAPPERS
+    using scalar_t = ColVec_t::elem_type;
 #endif

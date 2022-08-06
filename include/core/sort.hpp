@@ -32,10 +32,10 @@ sort(ColVec_t& vec_in, const bool ascending = true)
 {
     if (ascending) {
         std::sort(vec_in.begin(), vec_in.end(), 
-            [](auto a, auto b) {return a < b;});
+            [](scalar_t a, scalar_t b) {return a < b;});
     } else {
         std::sort(vec_in.begin(), vec_in.end(), 
-            [](auto a, auto b) {return a > b;});
+            [](scalar_t a, scalar_t b) {return a > b;});
     }
 }
 
