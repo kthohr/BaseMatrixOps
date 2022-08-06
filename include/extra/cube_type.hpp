@@ -27,7 +27,7 @@ class Cube_t
 #ifdef BMO_ENABLE_EIGEN_WRAPPERS
         typedef Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> MatData_t;
 #else
-        typedef Mat<T> MatData_t;
+        typedef arma::Mat<T> MatData_t;
 #endif
         typedef std::vector< Cube_t<T>::MatData_t > CubeData_t;
 
