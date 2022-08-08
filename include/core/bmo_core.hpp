@@ -63,6 +63,7 @@
 #include "sort.hpp"
 #include "sqrt.hpp"
 #include "sum.hpp"
+#include "trace.hpp"
 #include "transpose.hpp"
 #include "zeros.hpp"
 
