@@ -29,6 +29,7 @@
 #include "access.hpp"
 #include "array_add.hpp"
 #include "array_div.hpp"
+#include "array_mult.hpp"
 #include "as_scalar.hpp"
 #include "cholesky.hpp"
 #include "constant.hpp"

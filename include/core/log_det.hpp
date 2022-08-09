@@ -31,7 +31,8 @@
 #endif
 
 #ifdef BMO_ENABLE_EIGEN_WRAPPERS
-    #define BMO_MATOPS_LOG_DET(A) ( (A).llt().matrixL().diagonal().array().log() * 2 ).sum()
+    // #define BMO_MATOPS_LOG_DET(A) ( (A).llt().matrixL().diagonal().array().log() * 2 ).sum() // Eigen triangular view does not have a 'diagonal()' member function
+    #define BMO_MATOPS_LOG_DET(A) ( (A).llt().matrixLLT().diagonal().array().log() * 2 ).sum()
 #endif
 
 //
