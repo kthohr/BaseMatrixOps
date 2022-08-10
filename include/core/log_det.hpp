@@ -27,7 +27,7 @@
 //
 
 #ifdef BMO_ENABLE_ARMA_WRAPPERS
-    #define BMO_MATOPS_LOG_DET(A) 2 * arma::accu( arma::log( arma::chol(A,"lower").diag() ) )
+    #define BMO_MATOPS_LOG_DET(A) 2 * arma::accu( arma::log( arma::diagvec(arma::chol(A,"lower")) ) )
 #endif
 
 #ifdef BMO_ENABLE_EIGEN_WRAPPERS
