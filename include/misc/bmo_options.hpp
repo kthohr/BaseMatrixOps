@@ -12,7 +12,7 @@
 #endif
 
 #ifndef BMO_VERSION_PATCH
-    #define BMO_VERSION_PATCH 0
+    #define BMO_VERSION_PATCH 1
 #endif
 
 //
@@ -27,9 +27,9 @@
         #error Eigen must be version 3.4.0 or above
     #endif
 
-    using scalar_t = ColVec_t::Scalar;
+    using scalar_t = bmo::ColVec_t::Scalar;
 #endif
 
 #ifdef BMO_ENABLE_ARMA_WRAPPERS
-    using scalar_t = ColVec_t::elem_type;
+    using scalar_t = bmo::ColVec_t::elem_type;
 #endif
