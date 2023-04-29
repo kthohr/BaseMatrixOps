@@ -27,15 +27,15 @@
 //
 
 #ifdef BMO_ENABLE_ARMA_WRAPPERS
-    #define BMO_MATOPS_ONE_COLVEC(n) ColVec_t(n,arma::fill::ones)
-    #define BMO_MATOPS_ONE_ROWVEC(n) RowVec_t(n,arma::fill::ones)
-    #define BMO_MATOPS_ONE_MAT(n,k) Mat_t(n,k,arma::fill::ones)
+    #define BMO_MATOPS_ONE_COLVEC(n) bmo::ColVec_t(n,arma::fill::ones)
+    #define BMO_MATOPS_ONE_ROWVEC(n) bmo::RowVec_t(n,arma::fill::ones)
+    #define BMO_MATOPS_ONE_MAT(n,k) bmo::Mat_t(n,k,arma::fill::ones)
 #endif
 
 #ifdef BMO_ENABLE_EIGEN_WRAPPERS
-    #define BMO_MATOPS_ONE_COLVEC(n) ColVec_t::Ones(n)
-    #define BMO_MATOPS_ONE_ROWVEC(n) RowVec_t::Ones(n)
-    #define BMO_MATOPS_ONE_MAT(n,k) Mat_t::Ones(n,k)
+    #define BMO_MATOPS_ONE_COLVEC(n) bmo::ColVec_t::Ones(n)
+    #define BMO_MATOPS_ONE_ROWVEC(n) bmo::RowVec_t::Ones(n)
+    #define BMO_MATOPS_ONE_MAT(n,k) bmo::Mat_t::Ones(n,k)
 #endif
 
 //

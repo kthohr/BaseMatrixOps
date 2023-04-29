@@ -27,15 +27,15 @@
 //
 
 #ifdef BMO_ENABLE_ARMA_WRAPPERS
-    #define BMO_MATOPS_CONSTANT_COLVEC(n,a) ColVec_t(n,arma::fill::value(a))
-    #define BMO_MATOPS_CONSTANT_ROWVEC(n,a) RowVec_t(n,arma::fill::value(a))
-    #define BMO_MATOPS_CONSTANT_MAT(n,k,a) Mat_t(n,k,arma::fill::value(a))
+    #define BMO_MATOPS_CONSTANT_COLVEC(n,a) bmo::ColVec_t(n,arma::fill::value(a))
+    #define BMO_MATOPS_CONSTANT_ROWVEC(n,a) bmo::RowVec_t(n,arma::fill::value(a))
+    #define BMO_MATOPS_CONSTANT_MAT(n,k,a) bmo::Mat_t(n,k,arma::fill::value(a))
 #endif
 
 #ifdef BMO_ENABLE_EIGEN_WRAPPERS
-    #define BMO_MATOPS_CONSTANT_COLVEC(n,a) ColVec_t::Constant(n,a)
-    #define BMO_MATOPS_CONSTANT_ROWVEC(n,a) RowVec_t::Constant(n,a)
-    #define BMO_MATOPS_CONSTANT_MAT(n,k,a) Mat_t::Constant(n,k,a)
+    #define BMO_MATOPS_CONSTANT_COLVEC(n,a) bmo::ColVec_t::Constant(n,a)
+    #define BMO_MATOPS_CONSTANT_ROWVEC(n,a) bmo::RowVec_t::Constant(n,a)
+    #define BMO_MATOPS_CONSTANT_MAT(n,k,a) bmo::Mat_t::Constant(n,k,a)
 #endif
 
 //

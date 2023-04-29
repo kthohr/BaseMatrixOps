@@ -21,6 +21,9 @@
 #ifndef BMO_MISC_MATH
 #define BMO_MISC_MATH
 
+namespace bmo
+{
+
 template<typename T1, typename T2>
 constexpr
 bool
@@ -28,6 +31,8 @@ any_nan(const T1 x, const T2 y)
 noexcept
 {
     return( std::isnan(x) || std::isnan(y) );
+}
+
 }
 
 #endif

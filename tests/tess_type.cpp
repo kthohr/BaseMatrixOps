@@ -27,12 +27,12 @@ int main()
     bmo::Tess_t<double> test_tess_1(4,2,3,2);
 
     bmo::Cube_t<double> test_cube_1 = test_tess_1.cube(0);
-    Mat_t test_mat_1 = test_cube_1.mat(0);
+    bmo::Mat_t test_mat_1 = test_cube_1.mat(0);
     
     BMO_MATOPS_COUT << test_mat_1 << BMO_MATOPS_ENDL;
 
     const bmo::Cube_t<double>& test_cube_2 = test_tess_1.cube(0);
-    const Mat_t& test_mat_2 = test_cube_2.mat(1);
+    const bmo::Mat_t& test_mat_2 = test_cube_2.mat(1);
     
     BMO_MATOPS_COUT << test_mat_2 << BMO_MATOPS_ENDL;
 

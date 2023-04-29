@@ -30,15 +30,15 @@ int main()
 
     //
 
-    ColVec_t runif_test_vec = bmo::stats::runif_vec<double>(n_vals, engine);
+    bmo::ColVec_t runif_test_vec = bmo::stats::runif_vec<double>(n_vals, engine);
     
     BMO_MATOPS_COUT << runif_test_vec << BMO_MATOPS_ENDL;
 
-    ColVec_t rnorm_test_vec = bmo::stats::rnorm_vec<double>(n_vals, engine);
+    bmo::ColVec_t rnorm_test_vec = bmo::stats::rnorm_vec<double>(n_vals, engine);
     
     BMO_MATOPS_COUT << rnorm_test_vec << BMO_MATOPS_ENDL;
 
-    ColVec_t rind_test_vec = bmo::stats::rind_vec(n_vals, 0, 3, engine);
+    bmo::ColVec_t rind_test_vec = bmo::stats::rind_vec(n_vals, 0, 3, engine);
     
     BMO_MATOPS_COUT << rind_test_vec << BMO_MATOPS_ENDL;
 
